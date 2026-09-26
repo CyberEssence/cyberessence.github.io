@@ -6,6 +6,12 @@ lang: ru
 baseurl: ""
 url: "https://ultrageeek.github.io"
 
+nav:
+  - label: "// главная"
+    url: "/"
+  - label: "// об этом узле"
+    url: "/about/"
+
 markdown: kramdown
 permalink: /:year/:month/:day/:title/
 

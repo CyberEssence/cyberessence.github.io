@@ -2,6 +2,7 @@
 ---
 :root {
   --bg: #05070a;
+  --bg-soft: #0a0f0d;
   --fg: #b8ffcf;
   --accent: #00ffb3;
   --accent2: #ff3b3b;
@@ -66,6 +67,66 @@ html, body {
   padding: 2rem 1rem 1rem;
   border-bottom: 1px solid var(--dim);
 }
+
+/* ------------------------------------------------------------------ */
+/* Код: блоки и inline                                                 */
+/* ------------------------------------------------------------------ */
+
+/* Inline-код: подложка без рамки, компактные отступы */
+:not(pre) > code {
+  border: none;
+  background: var(--bg-soft);
+  color: var(--accent);
+  padding: 0.1em 0.35em;
+  border-radius: 3px;
+  font-family: 'JetBrains Mono', 'Fira Code', 'DejaVu Sans Mono', 'Noto Sans Mono', monospace;
+  font-variant-ligatures: none;
+  font-size: 0.95em;
+}
+
+/* Блоки кода: без рамки, с сохранением пробелов, моноширинный шрифт */
+pre {
+  display: block;
+  white-space: pre;
+  word-wrap: normal;
+  overflow-x: auto;
+  overflow-y: hidden;
+  max-width: 100%;
+  margin: 1rem 0;
+  padding: 0.8rem 1rem;
+  background: var(--bg-soft);
+  color: var(--accent);
+  border: none;
+  font-family: 'JetBrains Mono', 'Fira Code', 'DejaVu Sans Mono', 'Noto Sans Mono', monospace;
+  font-variant-ligatures: none;
+  font-size: 0.9rem;
+  line-height: 1.4;
+}
+
+pre > code {
+  border: none;
+  background: transparent;
+  padding: 0;
+  color: inherit;
+  font-size: inherit;
+}
+
+/* Rouge-обёртки не должны ограничивать ширину */
+.highlighter-rouge,
+.highlight {
+  max-width: 100%;
+  overflow: hidden;
+}
+
+.highlighter-rouge > .highlight > pre,
+div.highlight > pre,
+pre.highlight {
+  margin: 0;
+  border: none;
+}
+
+/* ------------------------------------------------------------------ */
+
 .ascii-logo {
   color: var(--dim);
   font-size: 0.6rem;
@@ -73,6 +134,7 @@ html, body {
   white-space: pre;
   margin-bottom: 1rem;
 }
+
 .site-title {
   font-family: 'VT323', monospace;
   font-size: 3rem;
@@ -81,10 +143,12 @@ html, body {
   letter-spacing: 0.1em;
   text-shadow: 0 0 8px var(--accent);
 }
+
 .tagline {
   color: var(--dim);
   min-height: 1.4em;
 }
+
 .cursor {
   animation: blink 1s step-start infinite;
 }
@@ -146,21 +210,26 @@ html, body {
   padding: 2rem 1rem;
   width: 100%;
 }
-a { color: var(--accent); }
-h1, h2, h3 { color: var(--accent); font-weight: normal; }
-.post-list h2, .post-preview h3 { border-bottom: 1px solid var(--dim); padding-bottom: 0.3rem; }
-.post-meta { color: var(--dim); font-size: 0.85rem; }
-.post-preview { margin-bottom: 2rem; }
 
-pre, code {
-  background: #0a0f0d;
+a { color: var(--accent); }
+
+h1, h2, h3 {
   color: var(--accent);
-  padding: 0.2rem 0.4rem;
-  border: 1px solid var(--dim);
-  font-family: 'Share Tech Mono', monospace;
-  overflow-x: auto;
+  font-weight: normal;
 }
-pre { padding: 1rem; }
+
+.post-list h2,
+.post-preview h3 {
+  border-bottom: 1px solid var(--dim);
+  padding-bottom: 0.3rem;
+}
+
+.post-meta {
+  color: var(--dim);
+  font-size: 0.85rem;
+}
+
+.post-preview { margin-bottom: 2rem; }
 
 blockquote {
   border-left: 2px solid var(--accent2);
@@ -176,6 +245,7 @@ blockquote {
   color: var(--dim);
   font-size: 0.85rem;
 }
+
 .blink { animation: blink 1.5s step-start infinite; color: var(--accent2); }
 .ok { color: var(--accent); }
 .small { font-size: 0.75rem; }
@@ -196,4 +266,5 @@ blockquote {
 @media (max-width: 600px) {
   .site-title { font-size: 2rem; }
   .ascii-logo { display: none; }
+  pre { font-size: 0.75rem; padding: 0.6rem 0.7rem; }
 }

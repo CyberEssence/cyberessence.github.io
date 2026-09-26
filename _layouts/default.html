@@ -1,23 +1,56 @@
 <!DOCTYPE html>
 <html lang="ru">
-{% include head.html %}
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>{% if page.title %}{{ page.title }} — {{ site.title }}{% else %}{{ site.title }}{% endif %}</title>
+  <meta name="description" content="{{ site.description }}">
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Share+Tech+Mono&family=VT323&family=JetBrains+Mono:wght@400;700&display=swap" rel="stylesheet">
+
+  <link rel="stylesheet" href="{{ '/assets/css/style.css' | relative_url }}">
+</head>
 <body>
-  <script>
-    // выполняется синхронно ДО отрисовки, поэтому скрывает boot-screen мгновенно
-    if (sessionStorage.getItem("wired_connected")) {
-      document.write('<style>#boot-screen{display:none !important;}</style>');
-    }
-  </script>
-  <div id="boot-screen">
-    <pre id="boot-text"></pre>
-  </div>
+  <div class="scanlines"></div>
+  <div class="noise"></div>
 
   <div class="crt-wrap">
-    {% include header.html %}
+    <header class="site-header">
+      <pre class="ascii-logo" aria-hidden="true">
+ ________  ________   _       __________  __________ 
+ /_  __/ / / / ____/  | |     / /  _/ __ \/ ____/ __ \
+  / / / /_/ / __/     | | /| / // // /_/ / __/ / / / /
+ / / / __  / /___     | |/ |/ // // _, _/ /___/ /_/ / 
+/_/ /_/ /_/_____/     |__/|__/___/_/ |_/_____/_____/
+      </pre>
+
+      <a href="{{ '/' | relative_url }}"
+         class="site-title glitch"
+         data-text="{{ site.title }}">{{ site.title }}</a>
+
+      {% if site.tagline %}
+        <p class="tagline">{{ site.tagline }}<span class="cursor">█</span></p>
+      {% endif %}
+
+      {% if site.nav %}
+        <nav class="main-nav">
+          {% for item in site.nav %}
+            <a href="{{ item.url | relative_url }}">{{ item.label }}</a>
+          {% endfor %}
+        </nav>
+      {% endif %}
+    </header>
+
     <main class="content">
       {{ content }}
     </main>
-    {% include footer.html %}
+
+    <footer class="site-footer">
+      <p>PRESENT DAY — <span class="blink">PRESENT TIME</span></p>
+      <p class="small">connection status: <span class="ok">ONLINE</span></p>
+    </footer>
   </div>
 </body>
 </html>
