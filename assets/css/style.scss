@@ -1,5 +1,21 @@
 ---
 ---
+@font-face {
+  font-family: 'JetBrains Mono';
+  font-style: normal;
+  font-weight: 400;
+  font-display: swap;
+  src: url('/assets/fonts/jetbrains-mono-regular.woff2') format('woff2');
+}
+
+@font-face {
+  font-family: 'JetBrains Mono';
+  font-style: normal;
+  font-weight: 700;
+  font-display: swap;
+  src: url('/assets/fonts/jetbrains-mono-bold.woff2') format('woff2');
+}
+
 :root {
   --bg: #05070a;
   --bg-soft: #0a0f0d;
@@ -79,7 +95,7 @@ html, body {
   color: var(--accent);
   padding: 0.1em 0.35em;
   border-radius: 3px;
-  font-family: 'JetBrains Mono', 'Fira Code', 'DejaVu Sans Mono', 'Noto Sans Mono', monospace;
+  font-family: 'JetBrains Mono', monospace;
   font-variant-ligatures: none;
   font-size: 0.95em;
 }
