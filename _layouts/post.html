@@ -1,0 +1,12 @@
+---
+layout: default
+---
+<article class="post">
+  <h1 class="glitch" data-text="{{ page.title }}">{{ page.title }}</h1>
+  <p class="post-meta">// {{ page.date | date: "%Y.%m.%d" }} {% if page.tags %}:: {{ page.tags | join: ", " }}{% endif %}</p>
+  <div class="post-content">
+    {{ content }}
+  </div>
+  <hr>
+  <p><a href="{{ '/' | relative_url }}">&lt;&lt; вернуться в The Wired</a></p>
+</article>

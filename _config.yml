@@ -1,0 +1,19 @@
+title: "THE WIRED // BLOG"
+description: "No matter where you go, everyone's connected."
+author: "lain"
+lang: ru
+
+baseurl: ""
+url: "https://ultrageeek.github.io"
+
+markdown: kramdown
+permalink: /:year/:month/:day/:title/
+
+plugins:
+  - jekyll-feed
+  - jekyll-sitemap
+
+exclude:
+  - Gemfile
+  - Gemfile.lock
+  - README.md

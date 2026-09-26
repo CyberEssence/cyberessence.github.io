@@ -1,0 +1,13 @@
+---
+layout: default
+---
+<section class="post-list">
+  <h2>&gt; log_entries</h2>
+  {% for post in site.posts %}
+  <article class="post-preview">
+    <h3><a href="{{ post.url | relative_url }}">{{ post.title }}</a></h3>
+    <p class="post-meta">{{ post.date | date: "%Y.%m.%d" }}</p>
+    <p>{{ post.excerpt | strip_html | truncatewords: 30 }}</p>
+  </article>
+  {% endfor %}
+</section>

@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="ru">
+{% include head.html %}
+<body>
+  <script>
+    // выполняется синхронно ДО отрисовки, поэтому скрывает boot-screen мгновенно
+    if (sessionStorage.getItem("wired_connected")) {
+      document.write('<style>#boot-screen{display:none !important;}</style>');
+    }
+  </script>
+  <div id="boot-screen">
+    <pre id="boot-text"></pre>
+  </div>
+
+  <div class="crt-wrap">
+    {% include header.html %}
+    <main class="content">
+      {{ content }}
+    </main>
+    {% include footer.html %}
+  </div>
+</body>
+</html>

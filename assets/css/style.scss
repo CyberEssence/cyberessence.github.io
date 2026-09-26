@@ -1,0 +1,199 @@
+---
+---
+:root {
+  --bg: #05070a;
+  --fg: #b8ffcf;
+  --accent: #00ffb3;
+  --accent2: #ff3b3b;
+  --dim: #4c6b5c;
+}
+
+* { box-sizing: border-box; }
+
+html, body {
+  margin: 0;
+  padding: 0;
+  background: var(--bg);
+  color: var(--fg);
+  font-family: 'Share Tech Mono', monospace;
+  overflow-x: hidden;
+}
+
+.scanlines {
+  pointer-events: none;
+  position: fixed;
+  inset: 0;
+  z-index: 9998;
+  background: repeating-linear-gradient(
+    to bottom,
+    rgba(0,0,0,0.15) 0px,
+    rgba(0,0,0,0.15) 1px,
+    transparent 2px,
+    transparent 3px
+  );
+  mix-blend-mode: overlay;
+}
+
+.noise {
+  pointer-events: none;
+  position: fixed;
+  inset: 0;
+  z-index: 9997;
+  opacity: 0.04;
+  background-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='100' height='100'><filter id='n'><feTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='2' stitchTiles='stitch'/></filter><rect width='100%25' height='100%25' filter='url(%23n)'/></svg>");
+  animation: noiseShift 0.2s steps(2) infinite;
+}
+@keyframes noiseShift {
+  0%   { transform: translate(0,0); }
+  100% { transform: translate(-2%,-1%); }
+}
+
+.crt-wrap {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  animation: flicker 6s infinite;
+}
+@keyframes flicker {
+  0%, 96%, 100% { opacity: 1; }
+  97% { opacity: 0.85; }
+  98% { opacity: 1; }
+  99% { opacity: 0.9; }
+}
+
+.site-header {
+  text-align: center;
+  padding: 2rem 1rem 1rem;
+  border-bottom: 1px solid var(--dim);
+}
+.ascii-logo {
+  color: var(--dim);
+  font-size: 0.6rem;
+  line-height: 1;
+  white-space: pre;
+  margin-bottom: 1rem;
+}
+.site-title {
+  font-family: 'VT323', monospace;
+  font-size: 3rem;
+  color: var(--accent);
+  text-decoration: none;
+  letter-spacing: 0.1em;
+  text-shadow: 0 0 8px var(--accent);
+}
+.tagline {
+  color: var(--dim);
+  min-height: 1.4em;
+}
+.cursor {
+  animation: blink 1s step-start infinite;
+}
+@keyframes blink { 50% { opacity: 0; } }
+
+.main-nav { margin-top: 1rem; }
+.main-nav a {
+  color: var(--fg);
+  text-decoration: none;
+  margin: 0 0.7rem;
+  border-bottom: 1px dashed transparent;
+}
+.main-nav a:hover {
+  color: var(--accent2);
+  border-color: var(--accent2);
+}
+
+.glitch {
+  position: relative;
+}
+.glitch::before,
+.glitch::after {
+  content: attr(data-text);
+  position: absolute;
+  left: 0; top: 0;
+  width: 100%;
+  overflow: hidden;
+  background: var(--bg);
+}
+.glitch::before {
+  color: var(--accent2);
+  clip-path: inset(0 0 60% 0);
+  animation: glitchTop 2.5s infinite linear alternate-reverse;
+}
+.glitch::after {
+  color: var(--accent);
+  clip-path: inset(60% 0 0 0);
+  animation: glitchBot 2s infinite linear alternate-reverse;
+}
+@keyframes glitchTop {
+  0% { transform: translate(0,0); }
+  20% { transform: translate(-2px,-1px); }
+  40% { transform: translate(2px,1px); }
+  60% { transform: translate(-1px,1px); }
+  100% { transform: translate(0,0); }
+}
+@keyframes glitchBot {
+  0% { transform: translate(0,0); }
+  25% { transform: translate(2px,0); }
+  50% { transform: translate(-2px,1px); }
+  75% { transform: translate(1px,-1px); }
+  100% { transform: translate(0,0); }
+}
+
+.content {
+  flex: 1;
+  max-width: 760px;
+  margin: 0 auto;
+  padding: 2rem 1rem;
+  width: 100%;
+}
+a { color: var(--accent); }
+h1, h2, h3 { color: var(--accent); font-weight: normal; }
+.post-list h2, .post-preview h3 { border-bottom: 1px solid var(--dim); padding-bottom: 0.3rem; }
+.post-meta { color: var(--dim); font-size: 0.85rem; }
+.post-preview { margin-bottom: 2rem; }
+
+pre, code {
+  background: #0a0f0d;
+  color: var(--accent);
+  padding: 0.2rem 0.4rem;
+  border: 1px solid var(--dim);
+  font-family: 'Share Tech Mono', monospace;
+  overflow-x: auto;
+}
+pre { padding: 1rem; }
+
+blockquote {
+  border-left: 2px solid var(--accent2);
+  margin-left: 0;
+  padding-left: 1rem;
+  color: var(--dim);
+}
+
+.site-footer {
+  text-align: center;
+  padding: 1.5rem;
+  border-top: 1px solid var(--dim);
+  color: var(--dim);
+  font-size: 0.85rem;
+}
+.blink { animation: blink 1.5s step-start infinite; color: var(--accent2); }
+.ok { color: var(--accent); }
+.small { font-size: 0.75rem; }
+
+#boot-screen {
+  position: fixed;
+  inset: 0;
+  background: #000;
+  color: var(--accent);
+  font-family: 'Share Tech Mono', monospace;
+  font-size: 0.9rem;
+  padding: 2rem;
+  white-space: pre-wrap;
+  z-index: 9999;
+  overflow: hidden;
+}
+
+@media (max-width: 600px) {
+  .site-title { font-size: 2rem; }
+  .ascii-logo { display: none; }
+}
