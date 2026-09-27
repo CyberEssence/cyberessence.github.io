@@ -308,12 +308,24 @@ blockquote {
   white-space: pre-wrap;
   z-index: 9999;
   overflow: hidden;
+  cursor: pointer;
+}
+
+#boot-text {
+  margin: 0;
+  font: inherit;
+  color: inherit;
+  white-space: pre-wrap;
 }
 
 @media (max-width: 600px) {
   .site-title { font-size: 2rem; }
   .ascii-logo { display: none; }
   .content { padding: 1.5rem 0.75rem; }
+  #boot-screen {
+    padding: 1rem;
+    font-size: 0.75rem;
+  }
   pre {
     font-size: 0.72rem;
     line-height: 1.3;

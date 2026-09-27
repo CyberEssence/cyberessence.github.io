@@ -13,13 +13,24 @@
   <link rel="stylesheet" href="{{ '/assets/css/style.css' | relative_url }}">
 </head>
 <body>
+
+  <script>
+    if (sessionStorage.getItem('wired_connected') === 'true') {
+      document.write('<style>#boot-screen{display:none !important;visibility:hidden !important;}</style>');
+    }
+  </script>
+
+  <div id="boot-screen" aria-hidden="true">
+    <pre id="boot-text"></pre>
+  </div>
+
   <div class="scanlines"></div>
   <div class="noise"></div>
 
   <div class="crt-wrap">
     <header class="site-header">
       <pre class="ascii-logo" aria-hidden="true">
- ________  ________   _       __________  __________ 
+  ________  ________   _       __________  __________
  /_  __/ / / / ____/  | |     / /  _/ __ \/ ____/ __ \
   / / / /_/ / __/     | | /| / // // /_/ / __/ / / / /
  / / / __  / /___     | |/ |/ // // _, _/ /___/ /_/ / 
@@ -47,10 +58,9 @@
       {{ content }}
     </main>
 
-    <footer class="site-footer">
-      <p>PRESENT DAY — <span class="blink">PRESENT TIME</span></p>
-      <p class="small">connection status: <span class="ok">ONLINE</span></p>
-    </footer>
+    {% include footer.html %}
   </div>
+
+  <script src="{{ '/assets/js/glitch.js' | relative_url }}"></script>
 </body>
 </html>
